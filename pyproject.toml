@@ -1,0 +1,97 @@
+[project]
+authors = [{name = "Seyoung Song"}]
+dependencies = []
+description = ""
+name = "CS570_Team_Project"
+readme = "README.md"
+requires-python = ">=3.10"
+version = "0.1.0"
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+
+# https://github.com/astral-sh/ruff#configuration
+[tool.ruff]
+extend-include = ["*.ipynb"]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+ignore = ["E501", "B018", "B905", "F403"]
+select = ["E4", "E7", "E9", "F", "B"]
+unfixable = ["B"]
+
+[tool.ruff.format]
+docstring-code-format = false
+docstring-code-line-length = "dynamic"
+line-ending = "auto"
+skip-magic-trailing-comma = true
+
+[tool.black]
+line-length = 120
+target-version = ["py310"]
+
+[tool.isort]
+line_length = 120
+profile = "black"
+
+[tool.mypy]
+disable_error_code = [
+  "abstract",
+  "annotation-unchecked",
+  "arg-type",
+  "assert-type",
+  "assignment",
+  "await-not-async",
+  "call-arg",
+  "call-overload",
+  "dict-item",
+  "empty-body",
+  "exit-return",
+  "func-returns-value",
+  "has-type",
+  "import-untyped",
+  "index",
+  "list-item",
+  "literal-required",
+  "method-assign",
+  "misc",
+  "name-match",
+  "no-overload-impl",
+  "no-redef",
+  "operator",
+  "overload-overlap",
+  "override",
+  "return-value",
+  "return",
+  "safe-super",
+  "str-bytes-safe",
+  "str-format",
+  "syntax",
+  "top-level-await",
+  "truthy-function",
+  "type-abstract",
+  "type-var",
+  "typeddict-item",
+  "typeddict-unknown-key",
+  "union-attr",
+  "unused-coroutine",
+  "used-before-def",
+  "valid-newtype",
+  "valid-type",
+  "var-annotated",
+] 
+enable_error_code = [
+  "attr-defined",
+  "import-not-found",
+  "import",
+  "name-defined",
+] 
+exclude = [] 
+explicit_package_bases = true # https://mypy.readthedocs.io/en/stable/config_file.html#confval-explicit_package_bases
+mypy_path = "$MYPY_CONFIG_FILE_DIR" # https://mypy.readthedocs.io/en/stable/config_file.html#import-discovery
+
+[[tool.mypy.overrides]]
+ignore_missing_imports = true
+module = ["unsloth", "gradio", "llama_cpp"]

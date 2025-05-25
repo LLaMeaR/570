@@ -1,0 +1,39 @@
+version: "3"
+
+tasks:
+  pip-install:
+    desc: pip install
+    cmds:
+      - pip install --timeout=1000 -r ./requirements.txt
+      - pip check
+      - pip freeze >./requirements/freeze.txt
+
+  pip-upgrade:
+    desc: pip upgrade
+    cmds:
+      - pip install --upgrade --timeout=1000 -r ./requirements.txt
+      - pip check
+      - pip freeze >./requirements/freeze.txt
+
+  fl:
+    desc: format and lint
+    cmds:
+      - ruff format ./src
+      - ruff check --fix ./src || true
+      - isort ./src
+      - ruff format ./src
+      - mypy ./src
+
+  fl-all:
+    desc: format and lint
+    cmds:
+      - ruff format .
+      - ruff check --fix . || true
+      - isort .
+      - ruff format .
+      - mypy .
+
+  clean:
+    desc: pyclean
+    cmds:
+      - pyclean . --debris
